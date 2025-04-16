@@ -69,14 +69,9 @@ const IconWrapper = styled.div`
 
 function App() {
   useEffect(() => {
-    const eventName = 'page_view';
-    const eventParams = { page: 'home' };
-
-    // 로그를 찍어서 전송되는 이벤트를 확인
-    console.log('Sending event to Firebase Analytics:', eventName, eventParams);
-
-    // Firebase Analytics에 이벤트 보내기
-    logEvent(analytics, eventName, eventParams);
+    if (analytics) {
+      logEvent(analytics, 'page_view', { page: 'home' });
+    }
   }, []);
 
   return (
